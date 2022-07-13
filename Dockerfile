@@ -1,6 +1,6 @@
 FROM node:18.4-alpine as builder
 
-ENV PROJECT_NAME=fs-hw-vizoss
+ENV PROJECT_NAME=short-link
 
 RUN mkdir -p /opt/${PROJECT_NAME}
 WORKDIR /opt/${PROJECT_NAME}
@@ -13,7 +13,7 @@ RUN npm run build
 
 FROM node:18.4-alpine as runner
 
-ENV PROJECT_NAME=fs-hw-vizoss
+ENV PROJECT_NAME=short-link
 RUN mkdir -p /opt/${PROJECT_NAME}
 WORKDIR /opt/${PROJECT_NAME}
 COPY --from=builder /opt/${PROJECT_NAME}/dist/ /opt/${PROJECT_NAME}/dist/

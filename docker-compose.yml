@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=password
       - APP_DB_USER=vizoss
       - APP_DB_PASS=vizoss
-      - APP_DB_NAME=fs_hw_vizoss
+      - APP_DB_NAME=short_link
     volumes:
       - ./docker-compose/postgres/db:/docker-entrypoint-initdb.d/
     ports:
@@ -28,7 +28,7 @@ services:
       - ./docker-compose/redis/data:/data
       - ./docker-compose/redis/redis.conf:/etc/redis.conf
   api-server:
-    image: scdt-china/fs-hw-vizoss:latest
+    image: vizoss/short-link:latest
     restart: always
     command: node ./dist/main.js
     environment:
@@ -36,7 +36,7 @@ services:
       - POSTGRES_PORT=15432
       - POSTGRES_USER=vizoss
       - POSTGRES_PASSWORD=vizoss
-      - POSTGRES_DB=fs_hw_vizoss
+      - POSTGRES_DB=short_link
       - REDIS_HOST=192.168.0.103
       - REDIS_PORT=16379
       - REDIS_PASSWORD=

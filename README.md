@@ -251,9 +251,9 @@ A["API请求: GET /:id"] -->B("请求参数是否有效?")
 创建远程访问用户：
 createuser vizoss
 创建db并设置Owner为vizoss：
-createdb fs_hw_vizoss -O vizoss -E utf-8
+createdb short_link -O vizoss -E utf-8
 本地连接：
-psql fs_hw_vizoss -U vizoss
+psql short_link -U vizoss
 设置密码：
 \password vizoss 
 vizoss
@@ -263,7 +263,7 @@ vizoss
 ```
 pg_hba.conf: 新增一行
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-host    fs_hw_vizoss    vizoss          0.0.0.0/0               password
+host    short_link    vizoss          0.0.0.0/0               password
 ```
 
 ```
@@ -273,7 +273,7 @@ listen_addresses = '0.0.0.0'		# what IP address(es) to listen on;
 
 - 测试连接
 ```/bin/bash
-psql fs_hw_vizoss -h 192.168.0.103 -U vizoss
+psql short_link -h 192.168.0.103 -U vizoss
 Password for user vizoss: vizoss
 ```
 
@@ -308,7 +308,7 @@ export POSTGRES_HOST=127.0.0.1
 export POSTGRES_PORT=5432
 export POSTGRES_USER=vizoss
 export POSTGRES_PASSWORD=vizoss
-export POSTGRES_DB=fs_hw_vizoss
+export POSTGRES_DB=short_link
 export REDIS_HOST=127.0.0.1
 export REDIS_PORT=6379
 export REDIS_PASSWORD=vizoss
@@ -328,22 +328,22 @@ npm run build
 ### 2.打包Docker镜像
 ```
 docker pull node:18.4-alpine
-docker build -t scdt-china/fs-hw-vizoss:latest .
+docker build -t vizoss/short-link:latest .
 ```
 
 ### 3.Docker 运行
 **依赖Docker环境和第二步打包Docker镜像**
 ```
-docker run -p 13000:3000 --name fs-hw-vizoss \
+docker run -p 13000:3000 --name short-link \
   -e POSTGRES_HOST="192.168.0.103" \
   -e POSTGRES_PORT=5432 \
   -e POSTGRES_USER="vizoss" \
   -e POSTGRES_PASSWORD="vizoss" \
-  -e POSTGRES_DB="fs_hw_vizoss" \
+  -e POSTGRES_DB="short_link" \
   -e REDIS_HOST="192.168.0.103" \
   -e REDIS_PORT=6379 \
   -e REDIS_PASSWORD="vizoss" \
-  -itd scdt-china/fs-hw-vizoss:latest
+  -itd vizoss/short-link:latest
   
 ```
 

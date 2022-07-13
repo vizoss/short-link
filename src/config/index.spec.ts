@@ -18,13 +18,13 @@ describe('config test', () => {
     process.env.POSTGRES_PORT = '5435';
     process.env.POSTGRES_USER = 'vizoss1';
     process.env.POSTGRES_PASSWORD = 'vizoss1';
-    process.env.POSTGRES_DB = 'fs_hw_vizoss1';
+    process.env.POSTGRES_DB = 'short_link1';
     const { host, port, password, username, database } = getDbConfig();
     expect(
       host === '192.168.0.104' &&
         port === '5435' &&
         password === 'vizoss1' &&
-        database === 'fs_hw_vizoss1' &&
+        database === 'short_link1' &&
         username === 'vizoss1',
     ).toBeTruthy();
   });
